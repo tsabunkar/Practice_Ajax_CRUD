@@ -18,6 +18,8 @@
 
 $(function() {
 
+  //GET REQUEST
+  
 $("#btnId").click(function() {
 $.ajax({
   url: 'http://localhost:8082/warship/webapi/test',
@@ -43,7 +45,7 @@ $.ajax({
 
 
 
-
+  //DELETE REQUEST
     $("#btnId1").click(function() {
 $.ajax({
   url: 'http://192.168.21.142:8081/MessengerApp/webapi/mymessage/14',
@@ -56,7 +58,7 @@ $.ajax({
        });
     })
 
-
+  //POST REQUEST
      $("#btnId2").click(function() {
      let jsonData = {
                           price: 3500,
@@ -85,7 +87,7 @@ $.ajax({
 
 
 
-
+  //PUT REQUEST
  $("#btnId3").click(function() {
    let  jsonData =  {
                       "author":"sd",
