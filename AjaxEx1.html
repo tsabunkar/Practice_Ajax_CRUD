@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+<button id="btnId">GET JSON DATA</button>
+<button id="btnId1">DELETE DATA</button>
+<button id="btnId2">POST DATA</button>
+<button id="btnId3">PUT DATA</button>
+
+<div id="divId"></div>
+
+<script>
+
+$(function() {
+
+$("#btnId").click(function() {
+$.ajax({
+  url: 'http://localhost:8082/warship/webapi/test',
+  type: 'GET',
+  // contentType: "application/json; charset=utf-8",
+    dataType: "json", //return data type of ajax call
+     success: function(data) {
+
+            console.log(data)
+
+            $("#divId").html(JSON.stringify(data));
+
+              //we cannot print JS object into HTML page bcoz we HTML page doestn't understand JS object
+              // soo we need to print JS object after converting it (JS object) to txt or String
+            },
+      error: function(e){
+              alert('ErrorOccured: ' + e);
+            }
+       });
+    })
+
+
+
+
+
+
+    $("#btnId1").click(function() {
+$.ajax({
+  url: 'http://192.168.21.142:8081/MessengerApp/webapi/mymessage/14',
+  type: 'DELETE', //return data type
+ //  contentType: "application/json; charset=utf-8",
+    dataType: "string",
+     success: function(data) {
+          console.log(data)
+                  },
+       });
+    })
+
+
+     $("#btnId2").click(function() {
+     let jsonData = {
+                          price: 3500,
+                          productAvaliableDate: "March 13, 2018",
+                          productCode: "GND-124",
+                          productId: 6,
+                          productImage: "https://i.imgur.com/sJUpSpt.jpg",
+                          productName: "dummy1",
+                          productRating: 3
+                        }
+        $.ajax({
+         url: 'http://192.168.21.142:8081/OnlineShopping_RestAPI/webapi/productslist/createproduct',
+         type:'POST',
+
+         contentType: "application/json; charset=utf-8",
+        // contentType: "application/javascript",
+         data : JSON.stringify(jsonData),
+         success:function(data) {
+               console.log(data)
+            },
+            error: function (e) {
+               console.log(e)
+            }
+        });
+        })
+
+
+
+
+ $("#btnId3").click(function() {
+   let  jsonData =  {
+                      "author":"sd",
+                      "id": 14,
+                      "message_detail":"Jersey is good!!!!"
+                    }
+       $.ajax({
+          url: 'http://192.168.21.142:8081/MessengerApp/webapi/mymessage/14',
+          type:'PUT',
+          contentType: "application/json; charset=utf-8",
+          data : JSON.stringify(jsonData),
+          success: function (data) {
+              console.log("Sucesss")
+                console.log(data)
+             },
+             error: function (e) {
+              console.log("error")
+                console.log(e)
+             }
+         });
+    })
+})
+</script>
+</body>
+</html>
